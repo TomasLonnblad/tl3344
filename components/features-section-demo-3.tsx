@@ -171,7 +171,7 @@ export const SkeletonTwo = () => {
       {/* TODO */}
       <div className="-ml-20 flex flex-row">
         {images.map((image, idx) => (
-          <motion.div
+          <motion.li
             variants={imageVariants}
             key={"images-first" + idx}
             style={{
@@ -188,12 +188,12 @@ export const SkeletonTwo = () => {
               height="500"
               className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
             />
-          </motion.div>
+          </motion.li>
         ))}
       </div>
       <div className="flex flex-row">
         {images.map((image, idx) => (
-          <motion.div
+          <motion.li
             key={"images-second" + idx}
             style={{
               rotate: Math.random() * 20 - 10,
@@ -210,7 +210,7 @@ export const SkeletonTwo = () => {
               height="500"
               className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
             />
-          </motion.div>
+          </motion.li>
         ))}
       </div>
 
