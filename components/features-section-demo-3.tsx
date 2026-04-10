@@ -35,7 +35,7 @@ export default function FeaturesSectionDemo() {
       title: "Deploy in seconds",
       description:
         "With our blazing fast, state of the art, cutting edge, we are so back cloud servies (read AWS) - you can deploy your model in seconds.",
-      skeleton: <SkeletonFour />,
+   
       className: "col-span-1 lg:col-span-3 border-b lg:border-none",
     },
   ];
@@ -171,7 +171,7 @@ export const SkeletonTwo = () => {
       {/* TODO */}
       <div className="-ml-20 flex flex-row">
         {images.map((image, idx) => (
-          <motion.li
+          <motion.div
             variants={imageVariants}
             key={"images-first" + idx}
             style={{
@@ -188,12 +188,12 @@ export const SkeletonTwo = () => {
               height="500"
               className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
             />
-          </motion.li>
+          </motion.div>
         ))}
       </div>
       <div className="flex flex-row">
         {images.map((image, idx) => (
-          <motion.li
+          <motion.div
             key={"images-second" + idx}
             style={{
               rotate: Math.random() * 20 - 10,
@@ -210,7 +210,7 @@ export const SkeletonTwo = () => {
               height="500"
               className="h-20 w-20 shrink-0 rounded-lg object-cover md:h-40 md:w-40"
             />
-          </motion.li>
+          </motion.div>
         ))}
       </div>
 
@@ -220,58 +220,3 @@ export const SkeletonTwo = () => {
   );
 };
 
-export const SkeletonFour = () => {
-  return (
-    <div className="relative mt-10 flex h-60 flex-col items-center bg-transparent md:h-60 dark:bg-transparent">
-      <Globe className="absolute -right-10 -bottom-80 md:-right-10 md:-bottom-72" />
-    </div>
-  );
-};
-
-export const Globe = ({ className }: { className?: string }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    let phi = 0;
-
-    if (!canvasRef.current) return;
-
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: 600 * 2,
-      height: 600 * 2,
-      phi: 0,
-      theta: 0,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 4000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.1, 0.8, 1],
-      glowColor: [1, 1, 1],
-      markers: [
-        // longitude latitude
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
-      ],
-      onRender: (state) => {
-        // Called on every animation frame.
-        // `state` will be an empty object, return updated params.
-        state.phi = phi;
-        phi += 0.01;
-      },
-    });
-
-    return () => {
-      globe.destroy();
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
-      className={className}
-    />
-  );
-};
